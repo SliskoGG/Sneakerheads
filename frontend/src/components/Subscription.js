@@ -6,7 +6,7 @@ const Subscription = () => {
   const subscriptionTiers = [
     {
       name: 'Kick Starter',
-      price: '$8',
+      price: '$16',
       period: '/month',
       description: 'Perfect for new enthusiasts',
       sneakers: '1 pair per year',
@@ -15,12 +15,13 @@ const Subscription = () => {
         '1 premium sneaker annually',
         'Monthly accessory box',
         'Community access',
-        'Basic style matching'
+        'Basic style matching',
+        'Free shipping on accessories'
       ]
     },
     {
       name: "Collector's Choice",
-      price: '$11',
+      price: '$22',
       period: '/month',
       description: 'For growing collections',
       sneakers: '2 pairs per year',
@@ -30,13 +31,14 @@ const Subscription = () => {
         'Enhanced accessory boxes',
         'Priority support',
         'Advanced style matching',
-        'Early access notifications'
+        'Early access notifications',
+        'Free shipping on accessories'
       ],
       popular: true
     },
     {
       name: 'Grail Hunter',
-      price: '$20',
+      price: '$40',
       period: '/month',
       description: 'Ultimate sneaker experience',
       sneakers: '6 pairs per year',
@@ -47,7 +49,8 @@ const Subscription = () => {
         'White-glove service',
         'First access to all drops',
         'Personal style consultant',
-        'VIP community access'
+        'VIP community access',
+        'Free expedited shipping on everything'
       ]
     }
   ];
@@ -86,7 +89,7 @@ const Subscription = () => {
             Choose Your Journey
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Select the subscription tier that matches your passion level. Each tier is designed to enhance your sneaker journey with carefully curated products.
+            Select the subscription tier that matches your passion level. Each tier is designed to enhance your sneaker journey with carefully curated products delivered monthly.
           </p>
         </motion.div>
 
@@ -162,7 +165,7 @@ const Subscription = () => {
                 </div>
                 
                 <div className="space-y-1 text-sm text-gray-600 mb-6">
-                  <div>{tier.sneakers}</div>
+                  <div className="font-medium text-black">{tier.sneakers}</div>
                   <div>{tier.accessories}</div>
                 </div>
               </div>
@@ -178,7 +181,7 @@ const Subscription = () => {
               </div>
 
               {/* CTA Button */}
-              <button className={`w-full py-4 font-medium transition-colors ${
+              <button className={`w-full py-4 font-medium transition-colors rounded-lg ${
                 tier.popular
                   ? 'bg-black text-white hover:bg-gray-900'
                   : 'border-2 border-black text-black hover:bg-black hover:text-white'
@@ -212,6 +215,13 @@ const Subscription = () => {
                 <Check className="h-5 w-5 text-black" />
                 <span>Cancel anytime</span>
               </div>
+            </div>
+            
+            <div className="mt-8 pt-6 border-t border-gray-200">
+              <p className="text-gray-600 text-sm">
+                <strong>Note:</strong> Sneaker shipping costs apply separately for physical sneaker deliveries. 
+                Accessories ship free as part of your monthly subscription.
+              </p>
             </div>
           </div>
         </motion.div>
