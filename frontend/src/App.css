@@ -1,87 +1,120 @@
-/* SoleStash Premium Styling */
+/* SoleStash Modern Clean Styling */
 
 * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
   scroll-behavior: smooth;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
 }
 
 .App {
   min-height: 100vh;
-  background: #0a0a0a;
+  background: #ffffff;
 }
 
-/* Custom Scrollbar */
+/* Custom Scrollbar - Minimal */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #1a1a1a;
+  background: #f5f5f5;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(to bottom, #f97316, #dc2626);
-  border-radius: 4px;
+  background: #000000;
+  border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(to bottom, #ea580c, #b91c1c);
+  background: #333333;
 }
 
-/* Glass Morphism Effect */
-.glass {
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  font-weight: 700;
 }
 
-/* Gradient Text */
-.gradient-text {
-  background: linear-gradient(135deg, #f97316, #dc2626);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* Premium Button Styles */
+/* Clean Button Styles */
 .btn-primary {
-  background: linear-gradient(135deg, #f97316, #dc2626);
+  background: #000000;
   border: none;
-  border-radius: 12px;
-  padding: 12px 24px;
+  padding: 16px 32px;
   color: white;
-  font-weight: 600;
+  font-weight: 500;
   cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(249, 115, 22, 0.25);
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 30px rgba(249, 115, 22, 0.4);
+  background: #333333;
+  transform: translateY(-1px);
 }
 
-/* Premium Card Styles */
-.premium-card {
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 20px;
+.btn-secondary {
+  background: transparent;
+  border: 2px solid #000000;
+  padding: 14px 30px;
+  color: #000000;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-secondary:hover {
+  background: #000000;
+  color: white;
+}
+
+/* Clean Card Styles */
+.card {
+  background: white;
+  border-radius: 8px;
   transition: all 0.3s ease;
+  overflow: hidden;
 }
 
-.premium-card:hover {
-  transform: translateY(-5px);
-  border-color: rgba(249, 115, 22, 0.5);
-  background: rgba(255, 255, 255, 0.08);
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
 }
 
-/* Animation Classes */
+/* Image Optimization */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Focus States */
+button:focus,
+input:focus,
+textarea:focus {
+  outline: 2px solid #000000;
+  outline-offset: 2px;
+}
+
+/* Animations */
 .fade-in {
-  animation: fadeIn 0.8s ease-out;
+  animation: fadeIn 0.6s ease-out;
 }
 
 .slide-up {
-  animation: slideUp 0.8s ease-out;
+  animation: slideUp 0.6s ease-out;
 }
 
 @keyframes fadeIn {
@@ -96,7 +129,7 @@
 @keyframes slideUp {
   from {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(20px);
   }
   to {
     opacity: 1;
@@ -104,29 +137,45 @@
   }
 }
 
-/* Typography Enhancements */
-h1, h2, h3, h4, h5, h6 {
-  line-height: 1.2;
-  letter-spacing: -0.02em;
+/* Grid Layouts */
+.grid-auto-fit {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
 }
 
-.text-shadow {
-  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+/* Responsive Design */
+@media (max-width: 768px) {
+  .btn-primary,
+  .btn-secondary {
+    width: 100%;
+    text-align: center;
+  }
+  
+  h1 {
+    font-size: 2.5rem;
+  }
+  
+  h2 {
+    font-size: 2rem;
+  }
+  
+  .grid-auto-fit {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
 }
 
-/* Background Patterns */
-.bg-pattern {
-  background-image: 
-    radial-gradient(circle at 25% 25%, rgba(249, 115, 22, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 75% 75%, rgba(220, 38, 38, 0.1) 0%, transparent 50%);
-}
-
-/* Focus States */
-button:focus,
-input:focus,
-textarea:focus {
-  outline: 2px solid rgba(249, 115, 22, 0.5);
-  outline-offset: 2px;
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 /* Loading States */
@@ -145,7 +194,7 @@ textarea:focus {
   background: linear-gradient(
     90deg,
     transparent,
-    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0.2),
     transparent
   );
   animation: loading 1.5s infinite;
@@ -160,17 +209,20 @@ textarea:focus {
   }
 }
 
-/* Mobile Optimizations */
-@media (max-width: 768px) {
-  .premium-card {
-    margin: 0 16px;
-  }
-  
-  h1 {
-    font-size: 2.5rem;
-  }
-  
-  h2 {
-    font-size: 2rem;
-  }
+/* Clean form elements */
+input[type="email"],
+input[type="text"],
+textarea {
+  border: 1px solid #e5e5e5;
+  border-radius: 4px;
+  padding: 12px 16px;
+  font-size: 16px;
+  transition: border-color 0.2s ease;
+}
+
+input[type="email"]:focus,
+input[type="text"]:focus,
+textarea:focus {
+  border-color: #000000;
+  outline: none;
 }

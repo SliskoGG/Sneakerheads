@@ -6,12 +6,9 @@ import './App.css';
 // Components
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
-import HowItWorks from './components/HowItWorks';
-import SubscriptionTiers from './components/SubscriptionTiers';
 import SneakerShowcase from './components/SneakerShowcase';
-import SocialProof from './components/SocialProof';
-import StyleQuiz from './components/StyleQuiz';
-import FAQ from './components/FAQ';
+import Community from './components/Community';
+import Subscription from './components/Subscription';
 import Footer from './components/Footer';
 
 const Home = () => {
@@ -19,17 +16,14 @@ const Home = () => {
     <motion.div 
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 0.8 }}
-      className="min-h-screen bg-gray-900"
+      transition={{ duration: 0.6 }}
+      className="min-h-screen bg-white"
     >
       <Navbar />
       <Hero />
-      <HowItWorks />
-      <SubscriptionTiers />
       <SneakerShowcase />
-      <SocialProof />
-      <StyleQuiz />
-      <FAQ />
+      <Community />
+      <Subscription />
       <Footer />
     </motion.div>
   );
