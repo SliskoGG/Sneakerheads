@@ -46,6 +46,11 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 700;
 }
 
+/* Text Shadow for overlays */
+.text-shadow {
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
 /* Clean Button Styles */
 .btn-primary {
   background: #000000;
@@ -144,6 +149,16 @@ textarea:focus {
   gap: 2rem;
 }
 
+/* Full-width immersive layout */
+.full-width-container {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
   .btn-primary,
@@ -163,6 +178,11 @@ textarea:focus {
   .grid-auto-fit {
     grid-template-columns: 1fr;
     gap: 1.5rem;
+  }
+
+  /* Mobile adjustments for immersive images */
+  .text-shadow {
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
   }
 }
 

@@ -80,30 +80,6 @@ const SneakerShowcase = () => {
       category: 'lifestyle',
       image: 'https://images.pexels.com/photos/32219102/pexels-photo-32219102.jpeg',
       tier: 'Kick Starter+'
-    },
-    {
-      id: 10,
-      name: 'Collector\'s Archive',
-      brand: 'various',
-      category: 'all',
-      image: 'https://images.pexels.com/photos/2364589/pexels-photo-2364589.jpeg',
-      tier: 'Grail Hunter'
-    },
-    {
-      id: 11,
-      name: 'Street Style Focus',
-      brand: 'various',
-      category: 'lifestyle',
-      image: 'https://images.pexels.com/photos/32268269/pexels-photo-32268269.jpeg',
-      tier: 'Collector\'s Choice+'
-    },
-    {
-      id: 12,
-      name: 'Nike Innovation',
-      brand: 'nike',
-      category: 'nike',
-      image: 'https://images.unsplash.com/photo-1491553895911-0055eca6402d',
-      tier: 'Grail Hunter'
     }
   ];
 
@@ -125,7 +101,7 @@ const SneakerShowcase = () => {
   };
 
   return (
-    <section id="collection" className="py-20 bg-white">
+    <section id="collection" className="py-20 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         
         {/* Header */}
@@ -201,15 +177,13 @@ const SneakerShowcase = () => {
             </button>
           ))}
         </motion.div>
+      </div>
 
-        {/* Products Grid */}
+      {/* Immersive Wide Products Display - Nike.com Style */}
+      <div className="w-full">
         <motion.div
           layout
-          className={`grid gap-8 ${
-            viewMode === 'grid' 
-              ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3' 
-              : 'grid-cols-1 lg:grid-cols-2'
-          }`}
+          className="space-y-8"
         >
           {filteredSneakers.map((sneaker, index) => (
             <motion.div
@@ -220,55 +194,54 @@ const SneakerShowcase = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.05 }}
               className="group cursor-pointer"
-              whileHover={{ y: -5 }}
+              whileHover={{ scale: 1.02 }}
             >
-              <div className={`${
-                viewMode === 'grid' ? 'space-y-4' : 'flex space-x-6'
-              }`}>
-                {/* Image - Nike.com style rectangular */}
-                <div className={`relative overflow-hidden bg-gray-50 ${
-                  viewMode === 'grid' 
-                    ? 'aspect-[4/3]'  // Wider rectangular aspect ratio like Nike.com
-                    : 'w-64 h-48 flex-shrink-0'  // Rectangular for list view too
-                } rounded-xl`}>
+              {/* Full-Width Immersive Image - Nike.com Style */}
+              <div className="relative w-screen left-1/2 right-1/2 -ml-[50vw] -mr-[50vw]">
+                <div className="relative aspect-[5/2] lg:aspect-[7/2] overflow-hidden bg-gray-50">
                   <img
                     src={sneaker.image}
                     alt={sneaker.name}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                   />
                   
-                  {/* Tier Badge */}
-                  <div className="absolute top-3 left-3">
-                    <span className={`px-3 py-1 rounded-full text-xs font-medium ${getTierColor(sneaker.tier)}`}>
-                      {sneaker.tier}
-                    </span>
+                  {/* Content Overlay */}
+                  <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-500"></div>
+                  
+                  {/* Product Info Overlay */}
+                  <div className="absolute bottom-8 left-8 lg:left-16 text-white">
+                    <div className="mb-3">
+                      <span className={`px-4 py-2 rounded-full text-sm font-medium ${getTierColor(sneaker.tier)} bg-opacity-90`}>
+                        {sneaker.tier}
+                      </span>
+                    </div>
+                    <h3 className="text-3xl lg:text-4xl font-bold mb-2 text-shadow">
+                      {sneaker.name}
+                    </h3>
+                    <p className="text-lg text-gray-200">Available with subscription</p>
                   </div>
-                </div>
-                
-                {/* Content */}
-                <div className={`space-y-2 ${viewMode === 'list' ? 'flex-1' : ''}`}>
-                  <h3 className="font-semibold text-black group-hover:text-gray-700 transition-colors">
-                    {sneaker.name}
-                  </h3>
-                  <p className="text-gray-600 text-sm">Available in {sneaker.tier}</p>
-                  {viewMode === 'list' && (
-                    <p className="text-sm text-gray-500 leading-relaxed">
-                      This premium sneaker could be part of your monthly delivery, carefully curated to match your style preferences and subscription tier.
-                    </p>
-                  )}
+
+                  {/* Right Side CTA */}
+                  <div className="absolute bottom-8 right-8 lg:right-16">
+                    <button className="bg-white text-black px-8 py-3 font-semibold rounded-lg hover:bg-gray-100 transition-colors opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+                      Learn More
+                    </button>
+                  </div>
                 </div>
               </div>
             </motion.div>
           ))}
         </motion.div>
+      </div>
 
-        {/* Subscription CTA */}
+      {/* Subscription CTA */}
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 mt-20">
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="text-center mt-16"
+          className="text-center"
         >
           <div className="bg-black text-white rounded-3xl p-12 max-w-4xl mx-auto">
             <h3 className="text-3xl font-bold mb-4">Ready to Start Your Collection?</h3>
