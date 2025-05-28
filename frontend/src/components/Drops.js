@@ -112,7 +112,7 @@ const Drops = () => {
   };
 
   return (
-    <section id="drops" className="py-20 bg-gray-50 overflow-hidden">
+    <section id="drops" className="py-20 bg-gray-50">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         
         {/* Header */}
@@ -162,17 +162,15 @@ const Drops = () => {
             </div>
           </div>
         </motion.div>
-      </div>
 
-      {/* Immersive Wide Drops Display - Nike.com Style */}
-      <div className="w-full">
+        {/* Drops Grid */}
         <motion.div
           key={activeTab}
           layout
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="space-y-8"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
         >
           {getCurrentDrops().map((drop, index) => (
             <motion.div
@@ -181,80 +179,78 @@ const Drops = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="group cursor-pointer"
-              whileHover={{ scale: 1.02 }}
+              className={`bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-200 hover:shadow-lg transition-all group cursor-pointer ${
+                drop.featured ? 'ring-2 ring-black' : ''
+              }`}
+              whileHover={{ y: -5 }}
             >
-              {/* Full-Width Immersive Image */}
-              <div className="relative w-screen left-1/2 right-1/2 -ml-[50vw] -mr-[50vw]">
-                <div className="relative aspect-[5/2] lg:aspect-[7/2] overflow-hidden bg-gray-100">
-                  <img
-                    src={drop.image}
-                    alt={drop.name}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                  />
-                  
-                  {/* Content Overlay */}
-                  <div className="absolute inset-0 bg-black/30 group-hover:bg-black/20 transition-colors duration-500"></div>
-                  
-                  {/* Top Badges */}
-                  <div className="absolute top-8 left-8 lg:left-16 flex space-x-3">
-                    <span className={`px-4 py-2 rounded-full text-sm font-medium ${getStatusColor(drop.status)} bg-opacity-90`}>
-                      {drop.status}
-                    </span>
-                    {drop.featured && (
-                      <div className="bg-black text-white p-2 rounded-full">
-                        <Star className="h-4 w-4 fill-current" />
-                      </div>
-                    )}
-                    {drop.exclusive && (
-                      <div className="bg-purple-600 text-white p-2 rounded-full">
-                        <Bell className="h-4 w-4" />
-                      </div>
-                    )}
-                  </div>
+              {/* Image */}
+              <div className="relative aspect-[4/3] overflow-hidden bg-gray-50">
+                <img
+                  src={drop.image}
+                  alt={drop.name}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                
+                {/* Status Badge */}
+                <div className="absolute top-4 left-4">
+                  <span className={`px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(drop.status)}`}>
+                    {drop.status}
+                  </span>
+                </div>
 
-                  {/* Product Info Overlay */}
-                  <div className="absolute bottom-8 left-8 lg:left-16 text-white">
-                    <div className="mb-3">
-                      <span className="text-sm font-medium text-gray-300 mb-2 block">{drop.brand}</span>
-                      <span className={`px-4 py-2 rounded-full text-sm font-medium ${getTierColor(drop.tier)} bg-opacity-90`}>
-                        {drop.tier}
-                      </span>
-                    </div>
-                    <h3 className="text-3xl lg:text-4xl font-bold mb-2 text-shadow">
-                      {drop.name}
-                    </h3>
-                    <div className="flex items-center space-x-2 text-gray-200">
-                      <Calendar className="h-4 w-4" />
-                      <span>{new Date(drop.releaseDate).toLocaleDateString('en-US', { 
-                        year: 'numeric', 
-                        month: 'long', 
-                        day: 'numeric' 
-                      })}</span>
+                {/* Featured Badge */}
+                {drop.featured && (
+                  <div className="absolute top-4 right-4">
+                    <div className="bg-black text-white p-2 rounded-full">
+                      <Star className="h-4 w-4 fill-current" />
                     </div>
                   </div>
+                )}
 
-                  {/* Right Side CTA */}
-                  <div className="absolute bottom-8 right-8 lg:right-16">
-                    <button className="bg-white text-black px-8 py-3 font-semibold rounded-lg hover:bg-gray-100 transition-colors opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
-                      Get Notified
-                    </button>
+                {/* Exclusive Badge */}
+                {drop.exclusive && (
+                  <div className="absolute top-4 right-4">
+                    <div className="bg-purple-600 text-white p-2 rounded-full">
+                      <Bell className="h-4 w-4" />
+                    </div>
                   </div>
+                )}
+              </div>
+
+              {/* Content */}
+              <div className="p-6">
+                <div className="flex items-center justify-between mb-3">
+                  <span className="text-sm font-medium text-gray-500">{drop.brand}</span>
+                  <span className={`px-2 py-1 rounded-full text-xs font-medium ${getTierColor(drop.tier)}`}>
+                    {drop.tier}
+                  </span>
+                </div>
+
+                <h3 className="text-lg font-semibold text-black mb-3 group-hover:text-gray-700 transition-colors">
+                  {drop.name}
+                </h3>
+
+                <div className="flex items-center space-x-2 text-sm text-gray-600">
+                  <Calendar className="h-4 w-4" />
+                  <span>{new Date(drop.releaseDate).toLocaleDateString('en-US', { 
+                    year: 'numeric', 
+                    month: 'long', 
+                    day: 'numeric' 
+                  })}</span>
                 </div>
               </div>
             </motion.div>
           ))}
         </motion.div>
-      </div>
 
-      {/* Newsletter Signup */}
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 mt-20">
+        {/* Newsletter Signup */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="text-center"
+          className="mt-20 text-center"
         >
           <div className="bg-black text-white rounded-3xl p-12 max-w-4xl mx-auto">
             <h3 className="text-3xl font-bold mb-4">Never Miss a Drop</h3>

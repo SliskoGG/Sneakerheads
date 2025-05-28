@@ -80,6 +80,30 @@ const SneakerShowcase = () => {
       category: 'lifestyle',
       image: 'https://images.pexels.com/photos/32219102/pexels-photo-32219102.jpeg',
       tier: 'Kick Starter+'
+    },
+    {
+      id: 10,
+      name: 'Adidas Ultraboost 22',
+      brand: 'adidas',
+      category: 'adidas',
+      image: 'https://images.unsplash.com/photo-1580902394743-1394a7ec93d2',
+      tier: 'Collector\'s Choice+'
+    },
+    {
+      id: 11,
+      name: 'Adidas Stan Smith',
+      brand: 'adidas',
+      category: 'adidas',
+      image: 'https://images.unsplash.com/photo-1521903062400-b80f2cb8cb9d',
+      tier: 'All Tiers'
+    },
+    {
+      id: 12,
+      name: 'Adidas Yeezy Boost',
+      brand: 'adidas',
+      category: 'adidas',
+      image: 'https://images.pexels.com/photos/32219102/pexels-photo-32219102.jpeg',
+      tier: 'Grail Hunter'
     }
   ];
 
