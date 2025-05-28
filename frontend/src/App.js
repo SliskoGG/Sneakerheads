@@ -7,6 +7,7 @@ import './App.css';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import SneakerShowcase from './components/SneakerShowcase';
+import Drops from './components/Drops';
 import Community from './components/Community';
 import Subscription from './components/Subscription';
 import Footer from './components/Footer';
@@ -22,6 +23,7 @@ const Home = () => {
       <Navbar />
       <Hero />
       <SneakerShowcase />
+      <Drops />
       <Community />
       <Subscription />
       <Footer />

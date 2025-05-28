@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Play, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Play, ChevronLeft, ChevronRight, X } from 'lucide-react';
 
 const Hero = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [showVideoModal, setShowVideoModal] = useState(false);
 
   const heroSneakers = [
     {
@@ -54,6 +55,13 @@ const Hero = () => {
     setCurrentSlide((prev) => (prev - 1 + heroSneakers.length) % heroSneakers.length);
   };
 
+  const scrollToCollection = () => {
+    const collectionSection = document.getElementById('collection');
+    if (collectionSection) {
+      collectionSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section className="relative min-h-screen bg-white overflow-hidden">
       {/* Main Hero Content */}
@@ -82,6 +90,7 @@ const Hero = () => {
 
               <div className="flex flex-col sm:flex-row gap-4">
                 <motion.button
+                  onClick={scrollToCollection}
                   className="bg-black text-white px-8 py-4 font-medium hover:bg-gray-900 transition-colors"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
@@ -90,6 +99,7 @@ const Hero = () => {
                 </motion.button>
                 
                 <motion.button
+                  onClick={() => setShowVideoModal(true)}
                   className="flex items-center space-x-2 text-black hover:text-gray-700 transition-colors px-8 py-4"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
@@ -167,6 +177,61 @@ const Hero = () => {
           </div>
         </div>
       </div>
+
+      {/* Video Modal */}
+      <AnimatePresence>
+        {showVideoModal && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+            onClick={() => setShowVideoModal(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              className="bg-white rounded-2xl p-8 max-w-2xl w-full relative"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                onClick={() => setShowVideoModal(false)}
+                className="absolute top-4 right-4 p-2 hover:bg-gray-100 rounded-full transition-colors"
+              >
+                <X className="h-6 w-6" />
+              </button>
+              
+              <div className="text-center space-y-6">
+                <h2 className="text-3xl font-bold text-black">Our Story</h2>
+                
+                {/* Video Placeholder */}
+                <div className="aspect-video bg-gray-900 rounded-xl flex items-center justify-center">
+                  <div className="text-center text-white space-y-4">
+                    <Play className="h-16 w-16 mx-auto opacity-60" />
+                    <div>
+                      <h3 className="text-xl font-semibold mb-2">SoleStash Story</h3>
+                      <p className="text-gray-300">Video coming soon</p>
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="text-left space-y-4">
+                  <p className="text-gray-600 leading-relaxed">
+                    SoleStash was born from a simple belief: every sneakerhead deserves access to the culture's most coveted drops, regardless of their location or connections.
+                  </p>
+                  <p className="text-gray-600 leading-relaxed">
+                    Our curation team works tirelessly to source authentic, premium sneakers from exclusive collaborations and limited releases, delivering them directly to passionate collectors worldwide.
+                  </p>
+                  <p className="text-gray-600 leading-relaxed">
+                    More than just a subscription service, we're building a global community of sneaker enthusiasts who share stories, styles, and the pure joy of unboxing that perfect pair.
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Subtle Brand Elements */}
       <div className="absolute top-1/2 right-0 transform -translate-y-1/2 text-gray-50 text-9xl font-bold pointer-events-none select-none">

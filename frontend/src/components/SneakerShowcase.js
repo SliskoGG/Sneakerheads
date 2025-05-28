@@ -225,11 +225,11 @@ const SneakerShowcase = () => {
               <div className={`${
                 viewMode === 'grid' ? 'space-y-4' : 'flex space-x-6'
               }`}>
-                {/* Image */}
+                {/* Image - Nike.com style rectangular */}
                 <div className={`relative overflow-hidden bg-gray-50 ${
                   viewMode === 'grid' 
-                    ? 'aspect-square' 
-                    : 'w-48 h-48 flex-shrink-0'
+                    ? 'aspect-[4/3]'  // Wider rectangular aspect ratio like Nike.com
+                    : 'w-64 h-48 flex-shrink-0'  // Rectangular for list view too
                 } rounded-xl`}>
                   <img
                     src={sneaker.image}
