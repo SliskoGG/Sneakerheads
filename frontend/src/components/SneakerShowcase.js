@@ -64,7 +64,7 @@ const SneakerShowcase = () => {
       category: 'lifestyle',
       image: 'https://images.pexels.com/photos/32268273/pexels-photo-32268273.jpeg',
       tier: 'All Tiers'
-    }
+    },
     {
       id: 10,
       name: 'Adidas Ultraboost 22',
@@ -80,7 +80,7 @@ const SneakerShowcase = () => {
       category: 'adidas',
       image: 'https://images.unsplash.com/photo-1521903062400-b80f2cb8cb9d',
       tier: 'All Tiers'
-    },
+    }
   ];
 
   const filteredSneakers = activeFilter === 'all' 
