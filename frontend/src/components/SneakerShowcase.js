@@ -66,14 +66,6 @@ const SneakerShowcase = () => {
       tier: 'All Tiers'
     },
     {
-      id: 10,
-      name: 'Adidas Ultraboost 22',
-      brand: 'adidas',
-      category: 'adidas',
-      image: 'https://images.unsplash.com/photo-1580902394743-1394a7ec93d2',
-      tier: 'Collector\'s Choice+'
-    },
-    {
       id: 11,
       name: 'Adidas Stan Smith',
       brand: 'adidas',
