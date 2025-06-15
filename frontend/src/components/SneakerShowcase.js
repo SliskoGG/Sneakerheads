@@ -65,14 +65,6 @@ const SneakerShowcase = () => {
       image: 'https://images.pexels.com/photos/32268273/pexels-photo-32268273.jpeg',
       tier: 'All Tiers'
     },
-    {
-      id: 11,
-      name: 'Adidas Stan Smith',
-      brand: 'adidas',
-      category: 'adidas',
-      image: 'https://images.unsplash.com/photo-1521903062400-b80f2cb8cb9d',
-      tier: 'All Tiers'
-    }
   ];
 
   const filteredSneakers = activeFilter === 'all' 
