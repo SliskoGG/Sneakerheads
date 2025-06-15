@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Grid, List, Gift } from 'lucide-react';
+import { Grid, List, Gift, MoreHorizontal } from 'lucide-react';
 
 const SneakerShowcase = () => {
   const [viewMode, setViewMode] = useState('grid');
@@ -65,6 +65,22 @@ const SneakerShowcase = () => {
       image: 'https://images.pexels.com/photos/32268273/pexels-photo-32268273.jpeg',
       tier: 'All Tiers'
     },
+    {
+      id: 10,
+      name: 'Adidas Ultraboost 22',
+      brand: 'adidas',
+      category: 'adidas',
+      image: 'https://images.unsplash.com/photo-1580902394743-1394a7ec93d2',
+      tier: 'Collector\'s Choice+'
+    },
+    {
+      id: 11,
+      name: 'Adidas Stan Smith',
+      brand: 'adidas',
+      category: 'adidas',
+      image: 'https://images.unsplash.com/photo-1521903062400-b80f2cb8cb9d',
+      tier: 'All Tiers'
+    }
   ];
 
   const filteredSneakers = activeFilter === 'all' 
@@ -83,6 +99,136 @@ const SneakerShowcase = () => {
         return 'bg-gray-100 text-gray-800';
     }
   };
+
+  // Grid View Component (Original full-width immersive style)
+  const GridView = () => (
+    <div className="w-full">
+      <motion.div layout className="space-y-8">
+        {filteredSneakers.map((sneaker, index) => (
+          <motion.div
+            key={sneaker.id}
+            layout
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: index * 0.05 }}
+            className="group cursor-pointer"
+            whileHover={{ scale: 1.02 }}
+          >
+            <div className="relative w-screen left-1/2 right-1/2 -ml-[50vw] -mr-[50vw]">
+              <div className="relative aspect-[5/2] lg:aspect-[7/2] overflow-hidden bg-gray-50">
+                <img
+                  src={sneaker.image}
+                  alt={sneaker.name}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                />
+                
+                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-500"></div>
+                
+                <div className="absolute bottom-8 left-8 lg:left-16 text-white">
+                  <div className="mb-3">
+                    <span className={`px-4 py-2 rounded-full text-sm font-medium ${getTierColor(sneaker.tier)} bg-opacity-90`}>
+                      {sneaker.tier}
+                    </span>
+                  </div>
+                  <h3 className="text-3xl lg:text-4xl font-bold mb-2 text-shadow">
+                    {sneaker.name}
+                  </h3>
+                  <p className="text-lg text-gray-200">Available with subscription</p>
+                </div>
+
+                <div className="absolute bottom-8 right-8 lg:right-16">
+                  <button className="bg-white text-black px-8 py-3 font-semibold rounded-lg hover:bg-gray-100 transition-colors opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+                    Learn More
+                  </button>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        ))}
+      </motion.div>
+    </div>
+  );
+
+  // List View Component (Horizontal scrolling cards)
+  const ListView = () => (
+    <div className="max-w-7xl mx-auto px-6 lg:px-8">
+      <div className="overflow-x-auto pb-6">
+        <div className="flex space-x-6 min-w-max">
+          {filteredSneakers.map((sneaker, index) => (
+            <motion.div
+              key={sneaker.id}
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: index * 0.1 }}
+              className="flex-shrink-0 w-80 bg-white rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-2 group"
+            >
+              <div className="relative aspect-[4/3] overflow-hidden rounded-t-xl">
+                <img
+                  src={sneaker.image}
+                  alt={sneaker.name}
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                />
+                
+                <div className="absolute top-3 left-3">
+                  <span className={`px-3 py-1 rounded-full text-xs font-medium ${getTierColor(sneaker.tier)}`}>
+                    {sneaker.tier}
+                  </span>
+                </div>
+              </div>
+              
+              <div className="p-6">
+                <p className="text-sm text-gray-600 font-medium mb-1">{sneaker.brand.toUpperCase()}</p>
+                <h3 className="font-bold text-lg text-black mb-3 leading-tight">{sneaker.name}</h3>
+                <p className="text-sm text-gray-600 mb-4">Available with subscription</p>
+                <button className="w-full bg-black text-white py-2 px-4 rounded-lg hover:bg-gray-800 transition-colors font-medium">
+                  Learn More
+                </button>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+
+  // Compact View Component (Small grid cards)
+  const CompactView = () => (
+    <div className="max-w-7xl mx-auto px-6 lg:px-8">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+        {filteredSneakers.map((sneaker, index) => (
+          <motion.div
+            key={sneaker.id}
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4, delay: index * 0.05 }}
+            className="bg-white rounded-lg shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 group"
+          >
+            <div className="relative aspect-square overflow-hidden rounded-t-lg">
+              <img
+                src={sneaker.image}
+                alt={sneaker.name}
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+              />
+              
+              <div className="absolute top-2 left-2">
+                <span className={`px-2 py-1 rounded text-xs font-medium ${getTierColor(sneaker.tier)}`}>
+                  {sneaker.tier}
+                </span>
+              </div>
+            </div>
+            
+            <div className="p-3">
+              <p className="text-xs text-gray-600 font-medium mb-1">{sneaker.brand.toUpperCase()}</p>
+              <h3 className="font-semibold text-sm text-black leading-tight">{sneaker.name}</h3>
+            </div>
+          </motion.div>
+        ))}
+      </div>
+    </div>
+  );
 
   return (
     <section id="collection" className="py-20 bg-white overflow-hidden">
@@ -105,7 +251,6 @@ const SneakerShowcase = () => {
                 Explore the types of premium sneakers that could be delivered to your door with your SoleStash subscription. Each month brings new possibilities from the world's most coveted brands.
               </p>
               
-              {/* Callout */}
               <div className="mt-6 bg-gray-50 rounded-2xl p-6 max-w-lg">
                 <div className="flex items-center space-x-3 mb-2">
                   <Gift className="h-6 w-6 text-black" />
@@ -117,13 +262,14 @@ const SneakerShowcase = () => {
               </div>
             </div>
             
-            {/* View Toggle */}
+            {/* View Toggle - Now Functional! */}
             <div className="flex items-center space-x-2">
               <button
                 onClick={() => setViewMode('grid')}
                 className={`p-3 rounded-lg transition-colors ${
                   viewMode === 'grid' ? 'bg-black text-white' : 'bg-gray-100 text-gray-600'
                 }`}
+                title="Full Width Grid"
               >
                 <Grid className="h-5 w-5" />
               </button>
@@ -132,8 +278,18 @@ const SneakerShowcase = () => {
                 className={`p-3 rounded-lg transition-colors ${
                   viewMode === 'list' ? 'bg-black text-white' : 'bg-gray-100 text-gray-600'
                 }`}
+                title="Horizontal Scroll"
               >
                 <List className="h-5 w-5" />
+              </button>
+              <button
+                onClick={() => setViewMode('compact')}
+                className={`p-3 rounded-lg transition-colors ${
+                  viewMode === 'compact' ? 'bg-black text-white' : 'bg-gray-100 text-gray-600'
+                }`}
+                title="Compact Grid"
+              >
+                <MoreHorizontal className="h-5 w-5" />
               </button>
             </div>
           </div>
@@ -163,60 +319,17 @@ const SneakerShowcase = () => {
         </motion.div>
       </div>
 
-      {/* Immersive Wide Products Display - Nike.com Style */}
-      <div className="w-full">
-        <motion.div
-          layout
-          className="space-y-8"
-        >
-          {filteredSneakers.map((sneaker, index) => (
-            <motion.div
-              key={sneaker.id}
-              layout
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.05 }}
-              className="group cursor-pointer"
-              whileHover={{ scale: 1.02 }}
-            >
-              {/* Full-Width Immersive Image - Nike.com Style */}
-              <div className="relative w-screen left-1/2 right-1/2 -ml-[50vw] -mr-[50vw]">
-                <div className="relative aspect-[5/2] lg:aspect-[7/2] overflow-hidden bg-gray-50">
-                  <img
-                    src={sneaker.image}
-                    alt={sneaker.name}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                  />
-                  
-                  {/* Content Overlay */}
-                  <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-500"></div>
-                  
-                  {/* Product Info Overlay */}
-                  <div className="absolute bottom-8 left-8 lg:left-16 text-white">
-                    <div className="mb-3">
-                      <span className={`px-4 py-2 rounded-full text-sm font-medium ${getTierColor(sneaker.tier)} bg-opacity-90`}>
-                        {sneaker.tier}
-                      </span>
-                    </div>
-                    <h3 className="text-3xl lg:text-4xl font-bold mb-2 text-shadow">
-                      {sneaker.name}
-                    </h3>
-                    <p className="text-lg text-gray-200">Available with subscription</p>
-                  </div>
-
-                  {/* Right Side CTA */}
-                  <div className="absolute bottom-8 right-8 lg:right-16">
-                    <button className="bg-white text-black px-8 py-3 font-semibold rounded-lg hover:bg-gray-100 transition-colors opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
-                      Learn More
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
-      </div>
+      {/* Dynamic Content Based on View Mode */}
+      <motion.div
+        key={viewMode}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.3 }}
+      >
+        {viewMode === 'grid' && <GridView />}
+        {viewMode === 'list' && <ListView />}
+        {viewMode === 'compact' && <CompactView />}
+      </motion.div>
 
       {/* Subscription CTA */}
       <div className="max-w-7xl mx-auto px-6 lg:px-8 mt-20">
