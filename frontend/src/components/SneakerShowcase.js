@@ -64,23 +64,7 @@ const SneakerShowcase = () => {
       category: 'lifestyle',
       image: 'https://images.pexels.com/photos/32268273/pexels-photo-32268273.jpeg',
       tier: 'All Tiers'
-    },
-    {
-      id: 8,
-      name: 'Nike Premium White',
-      brand: 'nike',
-      category: 'nike',
-      image: 'https://images.unsplash.com/photo-1521903062400-b80f2cb8cb9d',
-      tier: 'Grail Hunter'
-    },
-    {
-      id: 9,
-      name: 'Clean Lifestyle',
-      brand: 'various',
-      category: 'lifestyle',
-      image: 'https://images.pexels.com/photos/32219102/pexels-photo-32219102.jpeg',
-      tier: 'Kick Starter+'
-    },
+    }
     {
       id: 10,
       name: 'Adidas Ultraboost 22',
@@ -97,14 +81,6 @@ const SneakerShowcase = () => {
       image: 'https://images.unsplash.com/photo-1521903062400-b80f2cb8cb9d',
       tier: 'All Tiers'
     },
-    {
-      id: 12,
-      name: 'Adidas Yeezy Boost',
-      brand: 'adidas',
-      category: 'adidas',
-      image: 'https://images.pexels.com/photos/32219102/pexels-photo-32219102.jpeg',
-      tier: 'Grail Hunter'
-    }
   ];
 
   const filteredSneakers = activeFilter === 'all' 
